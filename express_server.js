@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 
 const urlDatabase = {
-  "b2xVn2": "http://www.lighthouselabs.ca",
+  b2xVn2: "http://www.lighthouselabs.ca",
   "9sm5xK": "http://www.google.com"
 };
 
@@ -26,7 +26,7 @@ const urlDatabase = {
 
 app.get("/urls", (req, res) => {
   const templateVars = {
-    username: req.cookies["username"],
+    username: req.cookies.username,
     urls: urlDatabase
   };
   res.render("urls_index", templateVars);
@@ -38,14 +38,14 @@ app.get("/", (req, res) => {
 
 app.get("/urls/new", (req, res) => {
   const templateVars = {
-    username: req.cookies["username"]
+    username: req.cookies.username
   };
   res.render("urls_new", templateVars);
 });
 
 app.get("/urls/:id", (req, res) => {
   const templateVars = {
-    username: req.cookies["username"],
+    username: req.cookies.username,
     id: req.params.id,
     longURL: urlDatabase[req.params.id]
   };
@@ -69,9 +69,18 @@ app.post("/urls/:id/delete", (req, res) => {
   res.redirect("/urls");
 });
 
+app.post("/urls/:id/update", (req, res) => {
+  const urlId = req.params.id;
+  const newLongURL = req.body.longURL;
+  urlDatabase[urlId] = newLongURL;
+  res.redirect("/urls");
+});
+
 app.post("/urls", (req, res) => {
-  console.log(req.body);
-  res.send("Ok");
+  const longURL = req.body.longURL;
+  const shortURL = generateRandomString();
+  urlDatabase[shortURL] = longURL;
+  res.redirect(`/urls/${shortURL}`);
 });
 
 app.get("/u/:id", (req, res) => {
