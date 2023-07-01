@@ -1,13 +1,20 @@
+function generateRandomString() {
+  const alphanumeric = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  let randomString = "";
+  for (let i = 0; i < 6; i++) {
+    const randomIndex = Math.floor(Math.random() * alphanumeric.length);
+    randomString += alphanumeric[randomIndex];
+  }
+  return randomString;
+}
+
 const express = require("express");
 const cookieParser = require("cookie-parser");
-const bodyParser = require('body-parser');
-
 const app = express();
 const PORT = 8080;
 
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 app.set("view engine", "ejs");
 
 const urlDatabase = {
@@ -20,7 +27,7 @@ const urlDatabase = {
 app.get("/urls", (req, res) => {
   const templateVars = {
     username: req.cookies["username"],
-    shortURLs: urlDatabase
+    urls: urlDatabase
   };
   res.render("urls_index", templateVars);
 });
