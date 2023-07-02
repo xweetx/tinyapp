@@ -96,7 +96,7 @@ app.listen(PORT, () => {
 });
 
 // Helper function to generate random strings
-function generateRandomString() {
+const generateRandomString = function() {
   const alphanumeric = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
   let randomString = "";
   for (let i = 0; i < 6; i++) {
@@ -104,4 +104,4 @@ function generateRandomString() {
     randomString += alphanumeric[randomIndex];
   }
   return randomString;
-}
+};
