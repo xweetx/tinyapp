@@ -1,24 +1,14 @@
-function generateRandomString() {
-  const alphanumeric = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-  let randomString = "";
-  for (let i = 0; i < 6; i++) {
-    const randomIndex = Math.floor(Math.random() * alphanumeric.length);
-    randomString += alphanumeric[randomIndex];
-  }
-  return randomString;
-}
-
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const app = express();
-const PORT = 8880;
+const PORT = 8080;
 
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 
 const urlDatabase = {
-  b2xVn2: "http://www.lighthouselabs.ca",
+  "b2xVn2": "http://www.lighthouselabs.ca",
   "9sm5xK": "http://www.google.com"
 };
 
@@ -105,3 +95,13 @@ app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}!`);
 });
 
+// Helper function to generate random strings
+function generateRandomString() {
+  const alphanumeric = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  let randomString = "";
+  for (let i = 0; i < 6; i++) {
+    const randomIndex = Math.floor(Math.random() * alphanumeric.length);
+    randomString += alphanumeric[randomIndex];
+  }
+  return randomString;
+}
