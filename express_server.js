@@ -1,5 +1,4 @@
 const express = require("express");
-const cookieParser = require("cookie-parser");
 const app = express();
 const PORT = 8080;
 
@@ -91,17 +90,11 @@ app.get("/hello", (req, res) => {
   res.send("<html><body>Hello <b>World</b></body></html>\n");
 });
 
-app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}!`);
-});
-
-// Helper function to generate random strings
-const generateRandomString = function() {
-  const alphanumeric = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-  let randomString = "";
-  for (let i = 0; i < 6; i++) {
-    const randomIndex = Math.floor(Math.random() * alphanumeric.length);
-    randomString += alphanumeric[randomIndex];
-  }
-  return randomString;
-};
+// app.get("/set", (req, res) => {
+//   const a = 1;
+//   res.send(`a = ${a}`);
+//  });
+ 
+//  app.get("/fetch", (req, res) => {
+//   res.send(`a = ${a}`);
+//  });
