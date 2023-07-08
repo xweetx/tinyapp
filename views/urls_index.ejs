@@ -21,8 +21,8 @@
     <%- include('partials/_header') %>
      
     <main style="margin: 1em;">
-      <!-- Add this line to display the username -->
-      <h2>Welcome, <%= username %>!</h2>
+      <!-- Add this line to display the user's email -->
+      <h2>Welcome, <%= user.email %>!</h2>
 
       <h3>My URLs</h3>
       <table class="table">
@@ -39,7 +39,7 @@
             <tr>
               <td><%= id %></td>              
               <td><a href="<%= urls[id] %>"><%= urls[id] %></a></td>
-              <td><form method="GET" action="urls/<%= id %>"> <button class="btn btn-outline-info">Edit</button></form> </td>
+              <td><form method="GET" action="/urls/<%= id %>"> <button class="btn btn-outline-info">Edit</button></form> </td>
               <td><form method="POST" action="/urls/<%= id %>/delete" style="display: inline;">
                 <button type="submit" class="btn btn-danger btn-sm">Delete</button>
               </form> </td>
